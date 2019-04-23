@@ -2,13 +2,20 @@ function [stat_sig, mean_intuit, std_intuit, mean_tech_intuit, std_tech_intuit] 
     [num, ~, raw] = xlsread(fname);
     
     % delete first 4 records bc they are from aware home
-    favs = raw(2+4:end, 10);
+    favs = raw(2+4:end-1, 10);
     %% Determine Favorite Gestures
     n = length(favs);
     favs = strrep(favs, 'Brush Up', 'Brush In');
     favs = strrep(favs, 'Brush Down', 'Brush Out');
     cat_favs = categorical(favs);
-    pie(cat_favs)
+    %pie(cat_favs)
+    hold off
+    histogram(cat_favs, 'Normalization', 'probability', 'DisplayOrder', 'descend')
+    yt = yticks;
+    yticklabels(yt*100);
+    xlabel('Gestures')
+    ylabel('Percentage of Sample Population')
+    
     title(['Preferred Gestures (n = ' num2str(n) ')' ])
     hold off
 %     cover_ct = sum(strcmp(favs, 'Cover'));
@@ -19,16 +26,21 @@ function [stat_sig, mean_intuit, std_intuit, mean_tech_intuit, std_tech_intuit] 
 %     ftouch_ct = sum(strcmp(favs, 'Force Touch'));
     
     %raw = [raw(1,:); raw(6:end, :)];
-    likert_data = [num(5:end, 1:7) num(5:end, end-2:end)];
+    likert_data = [num(5:end-1, 1:7) num(5:end-1, end-2:end)];
     %all_data = [raw{2:end,3:end-1}];
  %% Determine Least Fave Gesture
- h8 = raw(2+4:end, 11);
+ h8 = raw(2+4:end-1, 11);
  n = length(h8);
  h8 = strrep(h8, 'Brush Up', 'Brush In');
  favs = strrep(h8, 'Brush Down', 'Brush Out');
  cat_h8 = categorical(h8);
  
- pie(cat_h8)
+ %pie(cat_h8)
+ histogram(cat_h8, 'Normalization', 'probability', 'DisplayOrder', 'descend')
+    yt = yticks;
+    yticklabels(yt*100);
+    xlabel('Gestures')
+    ylabel('Percentage of Sample Population')
  title(['Least Preferred Gestures (n = ' num2str(n) ')' ])
  hold off
 %% Check for Significant Differences in Perceived Intuitiveness

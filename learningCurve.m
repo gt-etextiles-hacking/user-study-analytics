@@ -41,15 +41,54 @@ std_devs = [std(cover,0, 2) std(dbl_tap,0,2) std(brushin,0,2) std(brushout,0,2) 
 num_trials = 1:6;
 
 hold on
+ylim([0 5])
+xlim([1 6])
 xlabel('Trial Number')
 ylabel('Number of Attempts')
-title('Learning Curves for Gestures Over Test A & B')
-errorbar(num_trials, mean_attempts(:,1), std_devs(:,1), 'o-', 'LineWidth', 1);
-errorbar(num_trials, mean_attempts(:,2), std_devs(:,2), 's-', 'LineWidth', 1);
-errorbar(num_trials, mean_attempts(:,3), std_devs(:,3), 'd-', 'LineWidth', 1);
-errorbar(num_trials, mean_attempts(:,4), std_devs(:,4), 'v-', 'LineWidth', 1);
-errorbar(num_trials, mean_attempts(:,5), std_devs(:,5), 'p-', 'LineWidth', 1);
-errorbar(num_trials, mean_attempts(:,6), std_devs(:,6), 'x-', 'LineWidth', 1);
-legend('Cover', 'Double Tap', 'Brush In', 'Brush Out', 'Scratch', 'ForceTouch')
+title('Learning Curve for Cover Over Tests A & B')
+errorbar(num_trials, mean_attempts(:,1), std_devs(:,1), 'kx-', 'LineWidth', 1);
+%legend('Cover', 'Double Tap', 'Brush In', 'Brush Out', 'Scratch', 'ForceTouch')
+hold off
+
+errorbar(num_trials, mean_attempts(:,2), std_devs(:,2), 'kx-', 'LineWidth', 1);
+title('Learning Curve for Double Tap Over Tests A & B')
+ylim([0 5])
+xlim([1 6])
+xlabel('Trial Number')
+ylabel('Number of Attempts')
+hold off
+
+errorbar(num_trials, mean_attempts(:,3), std_devs(:,3), 'kx-', 'LineWidth', 1);
+title('Learning Curve for Brush In Over Tests A & B')
+ylim([0 5])
+xlim([1 6])
+xlabel('Trial Number')
+ylabel('Number of Attempts')
+hold off
+
+errorbar(num_trials, mean_attempts(:,4), std_devs(:,4), 'kx-', 'LineWidth', 1);
+title('Learning Curve for Brush Out Over Tests A & B')
+ylim([0 5])
+xlim([1 6])
+xlabel('Trial Number')
+ylabel('Number of Attempts')
+hold off
+
+errorbar(num_trials, mean_attempts(:,5), std_devs(:,5), 'kx-', 'LineWidth', 1);
+title('Learning Curve for Scratch Over Tests A & B')
+ylim([0 5])
+xlim([1 6])
+xlabel('Trial Number')
+ylabel('Number of Attempts')
+hold off
+
+errorbar(num_trials, mean_attempts(:,6), std_devs(:,6), 'kx-', 'LineWidth', 1);
+title('Learning Curve for ForceTouch Over Tests A & B')
+ylim([0 5])
+xlim([1 6])
+xlabel('Trial Number')
+ylabel('Number of Attempts')
+hold off
+%legend('Cover', 'Double Tap', 'Brush In', 'Brush Out', 'Scratch', 'ForceTouch')
 
 end

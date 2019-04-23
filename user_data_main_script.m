@@ -7,17 +7,17 @@ a_filenames = [];
 aggreg_data_struct = struct('TestID', '', 'TestNo', '', 'Filename', '', 'Tries_Per_Gest_Attempt', '', 'Success_Per_Gest_Attempt', '', 'Precision_Per_Gest', '', 'Recall_Per_Gest', '', 'Confuz_Mat', ''); 
 
 % generate filenames
-for i = 1:14
+for i = 1:16
     testID = [r_filename, num2str(i)];
     files = [{[r_filename, num2str(i), '_', 'A.csv']}; {[r_filename, num2str(i), '_', 'B.csv']}];
     aggreg_data_struct(i).TestID = testID;
     
     r_filenames = [r_filenames; files];
 end
-for i = 15:16
-    files = [{[a_filename, num2str(i), '_', 'A.csv']}; {[a_filename, num2str(i), '_', 'B.csv']}];
-    a_filenames = [a_filenames; files];
-end
+% for i = 15:16
+%     files = [{[a_filename, num2str(i), '_', 'A.csv']}; {[a_filename, num2str(i), '_', 'B.csv']}];
+%     a_filenames = [a_filenames; files];
+% end
 
 all_files = [r_filenames; a_filenames];
 %% Extract Metrics from Raw Data
