@@ -4,14 +4,14 @@ r_filenames = [];
 a_filenames = [];
 
 % Initialize Struct Array
-aggreg_data_struct = struct('TestID', '', 'TestNo', '', 'Filename', '', 'Tries_Per_Gest_Attempt', '', 'Success_Per_Gest_Attempt', '', 'Precision_Per_Gest', '', 'Recall_Per_Gest', '', 'Confuz_Mat', ''); 
+aggreg_data_struct = struct('TestID', '', 'TestNo', '', 'Filename', '', 'Tries_Per_Gest_Attempt', '', 'Success_Per_Gest_Attempt', '', 'Precision_Per_Gest', '', 'Recall_Per_Gest', '', 'Confuz_Mat', '');
 
 % generate filenames
 for i = 1:16
     testID = [r_filename, num2str(i)];
     files = [{[r_filename, num2str(i), '_', 'A.csv']}; {[r_filename, num2str(i), '_', 'B.csv']}];
     aggreg_data_struct(i).TestID = testID;
-    
+
     r_filenames = [r_filenames; files];
 end
 % for i = 15:16
@@ -25,12 +25,12 @@ for i = 1:length(all_files)
     fname = all_files{i,1};
     testNo = fname(end-4);
     testID = fname(1:end-6);
-    
+
     aggreg_data_struct(i).TestID = testID;
     aggreg_data_struct(i).TestNo = testNo;
     aggreg_data_struct(i).Filename = fname;
     [attempts, successes, gross_preciz, gross_recall, confuz_mat] = data_analysis(fname);
-    
+
     aggreg_data_struct(i).Tries_Per_Gest_Attempt = attempts;
     aggreg_data_struct(i).Success_Per_Gest_Attempt = successes;
     aggreg_data_struct(i).Precision_Per_Gest = gross_preciz;
@@ -47,11 +47,11 @@ hold off
  heatmap({'Cover' 'Double Tap' 'Brush In' 'Brush Out' 'Scratch' 'Force Touch'}, {'Cover' 'Double Tap' 'Brush In' 'Brush Out' 'Scratch' 'Force Touch'}, mass_mat)
     title('Gesture Confusion Matrix')
     xlabel('Gesture Recognized')
-    ylabel('Gesture Executed')
+    ylabel('Gesture Intended')
 % Confusion matrix heatmap
 
 % >> mass_mat
-% 
+%
 %     86     0     3     3     0    87
 %      0    96     1     2     0     1
 %      0     0    96     3     0     7
@@ -67,10 +67,10 @@ ag_preciz = aggreg(preciz)/length(all_files);
 ag_recall = aggreg(recall)/length(all_files);
 
 % preciz =
-% 
+%
 %     0.6399    0.9719    0.9297    0.9328    0.7502    0.7501
 % gross_recall =
-% 
+%
 %     0.6000    1.0000    1.0000    1.0000    1.0000    0.3750
 %% Post-Test Analysis
 [stat_sig, mean_intuit, std_intuit, mean_tech_intuit, std_tech_intuit] = post_test_parser('Post_Test_Data.csv');
